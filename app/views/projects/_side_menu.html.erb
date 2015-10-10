@@ -35,16 +35,16 @@
   </li>
 
   <li>
-    <a href="/staff">
-      <i class="ion ion-settings"></i>
-      <span class="text">Machinery</span>
-    </a>
+    <%= link_to(project_staffs_path(project)) do %>
+      <i class="ion ion-person-stalker"></i>
+      <span class="text">Staff</span>
+    <% end %>
   </li>
 
   <li>
     <a href="/staff">
-      <i class="ion ion-person-stalker"></i>
-      <span class="text">Staff</span>
+      <i class="ion ion-settings"></i>
+      <span class="text">Machinery</span>
     </a>
   </li>
 

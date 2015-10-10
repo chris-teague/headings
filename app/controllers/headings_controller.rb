@@ -29,7 +29,7 @@ class HeadingsController < ApplicationController
     @heading.project = @project
     respond_to do |format|
       if @heading.save
-        format.html { redirect_to @heading, notice: 'Heading was successfully created.' }
+        format.html { redirect_to project_headings_path(@project), notice: 'Heading was successfully created.' }
         format.json { render :show, status: :created, location: @heading }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class HeadingsController < ApplicationController
   def update
     respond_to do |format|
       if @heading.update(heading_params)
-        format.html { redirect_to @heading, notice: 'Heading was successfully updated.' }
+        format.html { redirect_to project_headings_path(@project), notice: 'Heading was successfully updated.' }
         format.json { render :show, status: :ok, location: @heading }
       else
         format.html { render :edit }
@@ -69,12 +69,12 @@ class HeadingsController < ApplicationController
     end
 
     def set_heading
-      @project.headings.find(params[:id])
+      @heading = @project.headings.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def heading_params
-      params.require(:project).permit(:name, :lat, :lng, :status)
+      params.require(:heading).permit(:name, :lat, :lng, :status)
     end
 
 end

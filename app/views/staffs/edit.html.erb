@@ -1,0 +1,7 @@
+<%= render '/projects/side_menu', project: @project %>
+<%= content_for(:page_title, "Editing #{@project.name} Staff") %>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@project, @staff] %> |
+<%= link_to 'Back', project_staffs_path(@project) %>

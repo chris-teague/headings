@@ -21,4 +21,5 @@
 //= require plugins/jquery.sparkline.min
 //= require plugins/jquery.easypiechart.min
 //= require app
+//= require select2
 //= require index.init

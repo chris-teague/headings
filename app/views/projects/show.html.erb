@@ -25,12 +25,37 @@
           this.setOptions({scrollwheel:true});
         });
 
+        var pinColorGreen = "00FF00";
+        var pinGreen = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColorGreen,
+            new google.maps.Size(21, 34),
+            new google.maps.Point(0,0),
+            new google.maps.Point(10, 34));
+
+        var pinColorRed = "FF0000";
+        var pinRed = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColorRed,
+            new google.maps.Size(21, 34),
+            new google.maps.Point(0,0),
+            new google.maps.Point(10, 34));
+
+        var pinColorYellow = "FFFF00";
+        var pinYellow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColorYellow,
+            new google.maps.Size(21, 34),
+            new google.maps.Point(0,0),
+            new google.maps.Point(10, 34));
+
+        var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+            new google.maps.Size(40, 37),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(12, 35));
+
         <% @project.headings.each do |heading| %>
           var myLatLng = {lat: <%= heading.lat %>, lng: <%= heading.lng %>};
           var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: '<%= heading.name %>'
+            title: '<%= heading.name %>',
+            icon:   pin<%= heading.pin_colour %>,
+            shadow: pinShadow
           });
         <% end %>
 
@@ -43,17 +68,7 @@
 <!-- row -->
 <div class="row">
 
-  <!-- Analytics -->
-  <div class="col-md-7">
-    <div class="panel panel-default mb20 panel-hovered analytics">
-      <div class="panel-heading">Analytics</div>
-      <div class="panel-body">
-        <div id="c3chartAnalytics"></div>
-      </div>
-    </div>
-
-  </div> <!-- #end analytics -->
-
+  <%= render '/projects/monthy_chart', project: @project %>
 
   <%= render '/common/activities', activities:
     [
@@ -75,19 +90,27 @@
   <!-- Project stats -->
   <div class="col-md-7">
     <div class="panel panel-default mb20 panel-hovered project-stats table-responsive">
-      <div class="panel-heading">Project Stats</div>
+      <div class="panel-heading">Active Headings Nearing Completion</div>
       <div class="panel-body">
         <table class="table">
           <thead>
             <tr>
-              <th>Id</th>
               <th class="col-sm-5">Project</th>
               <th class="col-sm-1">Progress</th>
-              <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+
+            <% @project.headings.where('completion > 80 AND status = ?', 'Available').order('completion DESC').each do |heading| %>
+              <tr>
+                <td><%= heading.name %></td>
+                <td class="text-center">
+                  <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em"><%= heading.completion %>,<%= 100 - heading.completion %></span>
+                </td>
+              </tr>
+            <% end %>
+
+            <!-- <tr>
               <td>101</td>
               <td>Designing Wordpress Theme</td>
               <td class="text-center">
@@ -121,7 +144,7 @@
                 <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
               </td>
               <td>28<sup>th</sup> Mar 2015</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>

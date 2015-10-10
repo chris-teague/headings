@@ -1,0 +1,50 @@
+<div class="row">
+
+  <!-- col-left -->
+  <div class="col-sm-12 col-md-6">
+    <div class="panel panel-default panel-hovered panel-stacked mb30">
+      <div class="panel-heading"><%= @project.name %> Staff Member</div>
+      <div class="panel-body">
+
+        <%= form_for([@project, @staff]) do |f| %>
+          <% if @staff.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+
+              <ul>
+              <% @staff.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :first_name %><br>
+            <%= f.text_field :first_name %>
+          </div>
+          <div class="field">
+            <%= f.label :last_name %><br>
+            <%= f.text_field :last_name %>
+          </div>
+          <div class="field">
+            <%= f.label :email %><br>
+            <%= f.text_field :email %>
+          </div>
+          <div class="field">
+            <%= f.label :phone %><br>
+            <%= f.text_field :phone %>
+          </div>
+          <div class="field">
+            <%= f.label :role %><br>
+            <%= f.text_field :role %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

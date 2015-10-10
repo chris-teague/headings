@@ -1,0 +1,41 @@
+<%= render '/projects/side_menu', project: @project %>
+<%= content_for(:page_title, "#{@staff}") %>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="panel panel-default panel-stacked panel-hovered mb30">
+      <div class="panel-heading">User Details</div>
+      <div class="panel-body">
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <strong>Email:</strong>
+          <%= @staff.email %>
+        </p>
+
+        <p>
+          <strong>Phone:</strong>
+          <%= @staff.phone %>
+        </p>
+
+        <p>
+          <strong>Role:</strong>
+          <%= @staff.role %>
+        </p>
+
+        <%= link_to 'Edit', edit_project_staff_path(@project, @staff) %> |
+        <%= link_to 'Back', project_staffs_path(@project) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default panel-stacked panel-hovered mb30">
+      <div class="panel-heading">Managing Headings:</div>
+      <div class="panel-body">
+
+      </div>
+    </div>
+  </div>
+</div>

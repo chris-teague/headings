@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  paginates_per 18
+  paginates_per 10
 
   acts_as_url :name
 

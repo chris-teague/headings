@@ -1,0 +1,47 @@
+
+<div class="col-md-7">
+  <div class="panel panel-default mb20 panel-hovered analytics">
+    <div class="panel-heading">Analytics</div>
+    <div class="panel-body">
+      <div id="c3chartAnalytics"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // c3 chart
+
+  $(document).ready(function() {
+    var analyticsconfig = {
+      bindto: "#c3chartAnalytics",
+      data: {
+        x: 'x',
+        xFormat: '%Y%m%d',
+        columns: [
+          ['x',                     30, 100,  80, 140, 150, 200],
+          ['actual_advance_metres', 90, 100, 170, 140, 190, 50],
+          ['daily_advance_metres',  1,    2,   3,   4,   5,  6]
+        ],
+        type: 'spline',
+        types: {
+          'actual_advance_metres': 'bar',
+          'daily_advance_metres':  'line'
+        }
+      },
+      color: {
+        pattern: ["#3F51B5",  "#38B4EE", "#4CAF50", "#E91E63"]
+      },
+      legend: {
+        position: "inset"
+      },
+      size: {
+        height: 330
+      }
+    };
+
+    c3.generate(analyticsconfig);
+
+  });
+</script>
+

@@ -1,0 +1,47 @@
+<%= render '/projects/side_menu', project: @project %>
+<%= content_for(:page_title, "#{@project.name} Staff List") %>
+
+<div class="col-sm-12 col-md-12">
+  <div class="panel panel-lined table-responsive panel-hovered mb20 data-table">
+
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+
+      <table class="table table-bordered table-striped dataTable no-footer">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @staffs.each do |staff| %>
+            <tr>
+              <td><%= staff.project_id %></td>
+              <td><%= staff.first_name %></td>
+              <td><%= staff.last_name %></td>
+              <td><%= staff.email %></td>
+              <td><%= staff.phone %></td>
+              <td><%= staff.role %></td>
+              <td><%= link_to 'Show', [@project, staff] %></td>
+              <td><%= link_to 'Edit', edit_project_staff_path(@project, staff) %></td>
+              <td><%= link_to 'Destroy', [@project, staff], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="panel-body">
+        <%= link_to '+ Add New Staff Member', new_project_staff_path(@project) %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

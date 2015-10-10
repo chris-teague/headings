@@ -1,0 +1,32 @@
+<h1><%= @project.name %></h1>
+
+<%= %>
+
+<h2>Editing Budget</h2>
+
+<%= simple_form_for(:budget, url: project_budget_path(@project)) do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Development Meters</th>
+        <th>Rehab Meters</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @project.sorted_budget_items.each do |budget_item| %>
+      <tr>
+        <td><%= budget_item %></td>
+        <td><input name="budget_item[<%= budget_item.id %>][development_metres]" type='text' value='<%= budget_item.development_metres %>' /></td>
+        <td><input name="budget_item[<%= budget_item.id %>][rehab_metres]" type='text' value='<%= budget_item.rehab_metres %>' /></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= f.button :submit %>
+
+<% end %>
+
+<br />
+<%= link_to '<< Back', project_path(@project) %>

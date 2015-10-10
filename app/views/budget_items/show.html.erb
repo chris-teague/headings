@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @budget_item.date %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @budget_item.project_id %>
+</p>
+
+<p>
+  <strong>Development metres:</strong>
+  <%= @budget_item.development_metres %>
+</p>
+
+<p>
+  <strong>Rehab metres:</strong>
+  <%= @budget_item.rehab_metres %>
+</p>
+
+<%= link_to 'Edit', edit_budget_item_path(@budget_item) %> |
+<%= link_to 'Back', budget_items_path %>

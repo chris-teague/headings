@@ -13,13 +13,18 @@
     </div>
     <script>
       $(document).ready(function() {
-          google.maps.event.addDomListener(window, 'load', function() {
-          new google.maps.Map(document.getElementById("map<%= project.id %>"), {
+        google.maps.event.addDomListener(window, 'load', function() {
+          var map<%= project.id %> = new google.maps.Map(document.getElementById("map<%= project.id %>"), {
             zoom: 13,
             center: new google.maps.LatLng(<%= project.lat %>, <%= project.lng %>),
             mapTypeId: google.maps.MapTypeId.SATELLITE,
             disableDefaultUI: true,
-            zoomControl: true
+            zoomControl: true,
+            scrollwheel: false
+          });
+
+          google.maps.event.addListener(map<%= project.id %>, 'click', function(event){
+            this.setOptions({scrollwheel:true});
           });
         });
       });

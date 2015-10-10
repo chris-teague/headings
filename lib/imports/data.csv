@@ -1,3 +1,4 @@
+"date","timestamp","actual_advance_metres","actual_rehab_metres","actual_available_headings","daily_advance_metres","daily_rehab_metres","daily_active_headings","daily_available_headings"
 "1/1/2014","1388530800","43","0","0","0","0","0","0.00"
 "1/1/2015","1420066800","47","41","30","47","0","34","44.00"
 "1/10/2014","1389308400","41","0","0","0","0","0","19.50"

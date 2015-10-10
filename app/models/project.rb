@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   validates :name, presence: true, uniqueness: :true
 
   has_many :budget_items
+  has_many :daily_summaries
 
   def to_param
     url
@@ -14,6 +15,10 @@ class Project < ActiveRecord::Base
 
   def sorted_budget_items
     create_missing_budget_items
+  end
+
+  def sorted_progress_data
+    daily_summaries.sort_by(&:date)
   end
 
   private

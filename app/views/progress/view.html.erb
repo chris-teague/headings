@@ -1,0 +1,31 @@
+<%= render '/projects/side_menu', project: @project %>
+<%= content_for(:page_title, "#{@project.name} Progress Data") %>
+
+<div class="col-sm-12 col-md-12">
+  <div class="panel panel-default panel-hovered panel-stacked mb30">
+
+    <div class='panel-body'>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Actual Daily Advance</th>
+            <th>Actual Rehab Meters</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @project.sorted_progress_data.each do |data_item| %>
+          <tr>
+            <td><%= data_item %></td>
+            <td><%= data_item.actual_advance_metres %>m</td>
+            <td><%= data_item.actual_rehab_metres %>m</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>

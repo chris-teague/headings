@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010063108) do
+ActiveRecord::Schema.define(version: 20151010084452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20151010063108) do
     t.decimal  "daily_available_headings",  precision: 15, scale: 4
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
+  end
+
+  create_table "headings", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.string   "status"
+    t.decimal  "lat",        precision: 15, scale: 10
+    t.decimal  "lng",        precision: 15, scale: 10
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "projects", force: :cascade do |t|

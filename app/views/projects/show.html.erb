@@ -1,6 +1,6 @@
 <%= render '/projects/side_menu', project: @project %>
 <%= content_for :page_title, "#{@project.name} Overview" %>
-<%= render 'achievement_stats' %>
+<%= render 'achievement_stats_individual', latest_summaries: @project.latest_summaries %>
 
 <div class="row">
   <div class="col-md-12">
@@ -24,6 +24,16 @@
         google.maps.event.addListener(map, 'click', function(event){
           this.setOptions({scrollwheel:true});
         });
+
+        <% @project.headings.each do |heading| %>
+          var myLatLng = {lat: <%= heading.lat %>, lng: <%= heading.lng %>};
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: '<%= heading.name %>'
+          });
+        <% end %>
+
       });
     });
   </script>

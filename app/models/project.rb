@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
 
   has_many :budget_items
   has_many :daily_summaries
+  has_many :headings
 
   def to_param
     url
@@ -19,6 +20,10 @@ class Project < ActiveRecord::Base
 
   def sorted_progress_data
     daily_summaries.sort_by(&:date)
+  end
+
+  def latest_summaries
+    daily_summaries.order('date DESC').limit(8)
   end
 
   private

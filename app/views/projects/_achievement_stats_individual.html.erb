@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default mb20 mini-box panel-hovered">
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="info left">
+            <h4 class="mt0 text-primary text-bold">
+              <%= latest_summaries.present? ? "#{latest_summaries.last.actual_advance_metres}m" : 'None' %>
+            </h4>
+            <h5 class="text-light mb0">Development Yesterday</h5>
+          </div>
+          <div class="right ion ion-ios-pulse icon"></div>
+        </div>
+      </div>
+      <div class="panel-footer clearfix panel-footer-sm panel-footer-primary">
+        <p class="mt0 mb0 left">% change</p>
+        <span class="sparkline right" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">10,8,9,3,5,8,5</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default mb20 mini-box panel-hovered">
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="info left">
+            <h4 class="mt0 text-success text-bold">132m</h4>
+            <h5 class="text-light mb0">Rehab Yesterday</h5>
+          </div>
+          <div class="right ion ion-ios-pulse icon"></div>
+        </div>
+      </div>
+      <div class="panel-footer clearfix panel-footer-sm panel-footer-success">
+        <p class="mt0 mb0 left">% change</p>
+        <span class="right sparkline" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">3,5,9,8,6,10</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default mb20 mini-box panel-hovered">
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="info left">
+            <h4 class="mt0 text-info text-bold">110</h4>
+            <h5 class="text-light mb0">Active Headings</h5>
+          </div>
+          <div class="right ion ion-ios-pulse icon"></div>
+        </div>
+      </div>
+      <div class="panel-footer clearfix panel-footer-sm panel-footer-info">
+        <p class="mt0 mb0 left">% change</p>
+        <span class="right sparkline" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">5,9,9,8,6,6</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default mb20 mini-box panel-hovered">
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="info left">
+            <h4 class="mt0 text-pink text-bold">80%</h4>
+            <h5 class="text-light mb0">Heading Reports Submitted</h5>
+          </div>
+          <div class="right ion ion-ios-list-outline icon"></div>
+        </div>
+      </div>
+      <div class="panel-footer clearfix panel-footer-sm panel-footer-pink">
+        <p class="mt0 mb0 left">% change</p>
+        <span class="sparkline right" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">6,4,9,10,6,2</span>
+      </div>
+    </div>
+  </div>
+  <!-- #end mini boxes -->
+</div> <!-- #end row -->

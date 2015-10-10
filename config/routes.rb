@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get  'budget/edit'
     post 'budget'
     get  'progress/view'
+    resources :headings
   end
 
 

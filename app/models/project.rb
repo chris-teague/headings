@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
 
+  paginates_per 18
+
   acts_as_url :name
 
   validates :name, presence: true, uniqueness: :true

@@ -1,11 +1,116 @@
 <%= render '/projects/side_menu', project: @project %>
 <%= content_for :page_title, "#{@project.name} Overview" %>
+<%= render 'achievement_stats' %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default panel-stacked panel-hovered mb30">
+      <div class="panel-body">
+        <div id="map" style="height: 500px"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+        google.maps.event.addDomListener(window, 'load', function() {
+        new google.maps.Map(document.getElementById("map"), {
+          zoom: 13,
+          center: new google.maps.LatLng(<%= @project.lat %>, <%= @project.lng %>),
+          mapTypeId: google.maps.MapTypeId.SATELLITE,
+          disableDefaultUI: true,
+          zoomControl: true
+        });
+      });
+    });
+  </script>
+</div>
 
 
-<p>
-  <%= link_to 'View Budget', project_budget_path(@project) %>
-  <%= link_to 'Edit Budget', project_budget_edit_path(@project) %>
-</p>
+<!-- row -->
+<div class="row">
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+  <!-- Analytics -->
+  <div class="col-md-7">
+    <div class="panel panel-default mb20 panel-hovered analytics">
+      <div class="panel-heading">Analytics</div>
+      <div class="panel-body">
+        <div id="c3chartAnalytics"></div>
+      </div>
+    </div>
+
+  </div> <!-- #end analytics -->
+
+
+  <%= render '/common/activities', activities:
+    [
+      { type: 'primary', time: '1 hour ago', message:  'Heading 2 report due' },
+      { type: 'success', time: '2 hours ago', message: 'Heading 12 report submitted' },
+      { type: 'warning', time: '3 hours ago', message: 'Heading 14 behind budget' },
+      { type: 'info',    time: '4 hours ago', message: 'Heading 11 has been inactive for 4 days' },
+      { type: 'primary', time: '4 hours ago', message: 'Heading 3 report submitted' },
+    ] %>
+  <!-- #end recent activities -->
+
+</div> <!-- #end row -->
+
+
+<!-- row -->
+<div class="row">
+
+
+  <!-- Project stats -->
+  <div class="col-md-7">
+    <div class="panel panel-default mb20 panel-hovered project-stats table-responsive">
+      <div class="panel-heading">Project Stats</div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th class="col-sm-5">Project</th>
+              <th class="col-sm-1">Progress</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>Designing Wordpress Theme</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">2,8</span>
+              </td>
+              <td>20<sup>th</sup> Jan 2015</td>
+            </tr>
+
+            <tr>
+              <td>220</td>
+              <td>Convert to SASS</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
+              </td>
+              <td>28<sup>th</sup> Jan 2015</td>
+            </tr>
+
+            <tr>
+              <td>310</td>
+              <td>Adding animations to template</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">7,3</span>
+              </td>
+              <td>02<sup>nd</sup> Feb 2015</td>
+            </tr>
+
+            <tr>
+              <td>405</td>
+              <td>Lorem ipsum dolar sit amet</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
+              </td>
+              <td>28<sup>th</sup> Mar 2015</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
   resources :budget_items
   resources :projects, path: '/' do
-    get  'budget'
     get  'budget/edit'
     post 'budget'
+    get  'progress/view'
   end
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

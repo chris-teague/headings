@@ -4,6 +4,7 @@ class BudgetItem < ActiveRecord::Base
   validates :date, presence: true
 
   def to_s
-    "#{date}"
+    "#{date.strftime('%b %Y')}"
   end
+
 end

@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require vendors
+//= require plugins/d3.min
+//= require plugins/c3.min
+//= require plugins/perfect-scrollbar.min
+//= require plugins/waves.min
+//= require plugins/jquery.sparkline.min
+//= require plugins/jquery.easypiechart.min
+//= require app
+//= require index.init

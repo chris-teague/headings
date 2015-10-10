@@ -1,26 +1,129 @@
-<p id="notice"><%= notice %></p>
+<%= render 'achievement_stats' %>
+<%= content_for :page_title, 'Mining Projects' %>
 
-<h1>Listing Projects</h1>
+<div class="row">
+  <% @projects.each do |project| %>
+    <div class="col-md-6">
+      <div class="panel panel-default panel-stacked panel-hovered mb30">
+        <div class="panel-heading"><%= link_to project.name, project %></div>
+        <div class="panel-body">
+          <div id="map<%= project.id %>" style="height: 300px"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+          google.maps.event.addDomListener(window, 'load', function() {
+          new google.maps.Map(document.getElementById("map<%= project.id %>"), {
+            zoom: 13,
+            center: new google.maps.LatLng(<%= project.lat %>, <%= project.lng %>),
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
+            disableDefaultUI: true,
+            zoomControl: true
+          });
+        });
+      });
+    </script>
+  <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><strong><%= link_to project.name, project %></strong></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default panel-stacked panel-hovered mb30">
+      <div class="panel-body">
+        <%= link_to '+ Create New Project', new_project_path %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<br>
 
-<%= link_to 'New Project', new_project_path %>
+<!-- row -->
+<div class="row">
+
+  <!-- Analytics -->
+  <div class="col-md-7">
+    <div class="panel panel-default mb20 panel-hovered analytics">
+      <div class="panel-heading">Analytics</div>
+      <div class="panel-body">
+        <div id="c3chartAnalytics"></div>
+      </div>
+    </div>
+
+  </div> <!-- #end analytics -->
+
+
+  <%= render '/common/activities', activities:
+    [
+      { type: 'primary', time: '1 hour ago', message:  'Heading 2 report due' },
+      { type: 'success', time: '2 hours ago', message: 'Heading 12 report submitted' },
+      { type: 'warning', time: '3 hours ago', message: 'Heading 14 behind budget' },
+      { type: 'info',    time: '4 hours ago', message: 'Heading 11 has been inactive for 4 days' },
+      { type: 'primary', time: '4 hours ago', message: 'Heading 3 report submitted' },
+    ] %>
+  <!-- #end recent activities -->
+
+</div> <!-- #end row -->
+
+
+<!-- row -->
+<div class="row">
+
+
+  <!-- Project stats -->
+  <div class="col-md-7">
+    <div class="panel panel-default mb20 panel-hovered project-stats table-responsive">
+      <div class="panel-heading">Project Stats</div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th class="col-sm-5">Project</th>
+              <th class="col-sm-1">Progress</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>Designing Wordpress Theme</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">2,8</span>
+              </td>
+              <td>20<sup>th</sup> Jan 2015</td>
+            </tr>
+
+            <tr>
+              <td>220</td>
+              <td>Convert to SASS</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
+              </td>
+              <td>28<sup>th</sup> Jan 2015</td>
+            </tr>
+
+            <tr>
+              <td>310</td>
+              <td>Adding animations to template</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">7,3</span>
+              </td>
+              <td>02<sup>nd</sup> Feb 2015</td>
+            </tr>
+
+            <tr>
+              <td>405</td>
+              <td>Lorem ipsum dolar sit amet</td>
+              <td class="text-center">
+                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
+              </td>
+              <td>28<sup>th</sup> Mar 2015</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

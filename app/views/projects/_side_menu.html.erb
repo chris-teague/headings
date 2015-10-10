@@ -1,0 +1,105 @@
+<% content_for(:side_menu) do %>
+  <li>
+    <a>
+      <i class="ion ion-pinpoint"></i>
+      <span class="text"><%= project.name %></span>
+    </a>
+  </li>
+
+  <li>
+    <%= link_to(edit_project_path(project)) do %>
+      <i class="ion ion-edit"></i>
+      <span class="text">Edit Project</span>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to(project_budget_edit_path(project)) do %>
+      <i class="ion ion-social-usd"></i>
+      <span class="text">Budget</span>
+    <% end %>
+  </li>
+
+  <li>
+    <a href="gmap.html">
+      <i class="ion ion-map"></i>
+      <span class="text">Headings</span>
+    </a>
+  </li>
+
+<% end %>
+<!--
+<li>
+  <a href="calendar.html">
+    <i class="ion ion-calendar"></i>
+    <span class="text">Calendar</span>
+    <span class="badge badge-xs badge-danger">hot</span>
+  </a>
+</li>
+<li>
+  <a href="material.html">
+    <i class="ion ion-icecream"></i>
+    <span class="text">Material</span>
+    <span class="badge badge-xs badge-success">new</span>
+  </a>
+</li>
+
+<li>
+  <a href="javascript:;">
+    <i class="ion ion-android-options"></i>
+    <span class="text">UI Kit</span>
+    <i class="arrow ion-chevron-left"></i>
+    <span class="badge badge-xs badge-info">10</span>
+  </a>
+  <ul class="inner-drop list-unstyled">
+    <li><a href="ui.buttons.html">Buttons</a></li>
+    <li><a href="ui.typography.html">Typography</a></li>
+    <li><a href="ui.grids.html">Grids</a></li>
+    <li><a href="ui.panels.html">Panels</a></li>
+    <li><a href="ui.notifications.html">Notifications</a></li>
+    <li><a href="ui.tabs.html">Tabs &amp; Accordion</a></li>
+    <li><a href="ui.progress-bars.html">Progress Bars</a></li>
+    <li><a href="ui.extras.html">Extras</a></li>
+  </ul>
+</li>
+
+<li>
+  <a href="javascript:;">
+    <i class="ion ion-asterisk"></i>
+    <span class="text">Icons</span>
+    <i class="arrow ion-chevron-left"></i>
+    <span class="badge badge-xs badge-primary">2</span>
+  </a>
+  <ul class="inner-drop nested list-unstyled">
+    <li><a href="icons.html">Font Awesome</a></li>
+  </ul>
+</li>
+
+<li>
+  <a href="javascript:;">
+    <i class="ion ion-stats-bars"></i>
+    <span class="text">Charts</span>
+    <i class="arrow ion-chevron-left"></i>
+  </a>
+  <ul class="inner-drop list-unstyled">
+    <li><a href="charts.c3.html">C3</a></li>
+    <li><a href="charts.sparklines.html">Sparklines</a></li>
+  </ul>
+</li>
+<li>
+  <a href="javascript:;">
+    <i class="ion ion-document-text"></i>
+    <span class="text">Forms</span>
+    <i class="arrow ion-chevron-left"></i>
+  </a>
+  <ul class="inner-drop list-unstyled">
+    <li><a href="forms.elements.html">Elements</a></li>
+  </ul>
+</li>
+
+<li>
+  <a href="tables.html">
+    <i class="ion ion-clipboard"></i>
+    <span class="text">Tables</span>
+  </a>
+</li> -->

@@ -1,0 +1,17 @@
+<!-- recent activities -->
+<div class="col-md-5">
+  <div class="panel panel-default mb20 activities">
+    <div class="panel-heading">Activities</div>
+    <div class="panel-body">
+      <ul class="list-unstyled">
+        <% activities.each do |activity| %>
+          <li class="<%= activity[:type] %>">
+            <span class="point"></span>
+            <span class="time small text-muted"><%= activity[:time] %></span>
+            <p><%= activity[:message] %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

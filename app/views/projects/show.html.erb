@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%= render '/projects/side_menu', project: @project %>
+<%= content_for :page_title, "#{@project.name} Overview" %>
 
-<h1><%= @project.name %></h1>
 
 <p>
   <%= link_to 'View Budget', project_budget_path(@project) %>

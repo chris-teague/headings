@@ -2,16 +2,17 @@
 <%= content_for(:page_title, "#{@project.name} Progress Data") %>
 
 <div class="col-sm-12 col-md-12">
-  <div class="panel panel-default panel-hovered panel-stacked mb30">
+  <div class="panel panel-lined table-responsive panel-hovered mb20 data-table">
 
-    <div class='panel-body'>
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
 
-      <table>
+      <table class="table table-bordered table-striped dataTable no-footer">
         <thead>
           <tr>
             <th>Date</th>
             <th>Actual Daily Advance</th>
             <th>Actual Rehab Meters</th>
+            <th>Actual Available Headings</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
             <td><%= data_item %></td>
             <td><%= data_item.actual_advance_metres %>m</td>
             <td><%= data_item.actual_rehab_metres %>m</td>
+            <td><%= data_item.actual_available_headings %></td>
           </tr>
         <% end %>
         </tbody>
@@ -29,3 +31,4 @@
 
   </div>
 </div>
+

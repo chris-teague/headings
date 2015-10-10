@@ -8,7 +8,7 @@ class DailySummary < ActiveRecord::Base
   attr_accessor :timestamp
 
   def to_s
-    "#{date.strftime('%b %Y')}"
+    "#{date.strftime('%d %b %Y')}"
   end
 
 end

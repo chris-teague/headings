@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   resources :budget_items
   resources :projects, path: '/' do
     get  'budget/edit'
+    get  'budget/view'
     post 'budget'
     get  'progress/view'
     resources :headings
     resources :staffs
+    resources :machines
   end
 
 

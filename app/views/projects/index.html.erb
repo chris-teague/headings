@@ -5,7 +5,16 @@
   <% @projects.each do |project| %>
     <div class="col-md-6">
       <div class="panel panel-default panel-stacked panel-hovered mb30">
-        <div class="panel-heading"><%= link_to project.name, project %></div>
+        <div class="panel-heading">
+          <%= link_to project.name, project %>
+          <% if project.budget_status < 75 %>
+            <span class="ion ion-alert-circled right" style='color:red'> <small>Behind Budget <%= 100 - project.budget_status %>%</small></span>
+          <% elsif project.budget_status < 95 %>
+            <span class="ion ion-alert-circled right" style='color:orange'> <small>Behind Budget <%= 100 - project.budget_status %>%</small></span>
+          <% else %>
+            <span class="ion ion-checkmark-circled right" style='color:green'></span>
+          <% end %>
+        </div>
         <div class="panel-body">
           <div id="map<%= project.id %>" style="height: 300px"></div>
         </div>
@@ -32,28 +41,6 @@
   <% end %>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default panel-stacked panel-hovered mb30">
-      <div class="panel-body">
-        <%= paginate @projects %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default panel-stacked panel-hovered mb30">
-      <div class="panel-body">
-        <%= link_to '+ Create New Project', new_project_path %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- row -->
 <div class="row">
 
@@ -71,11 +58,11 @@
 
   <%= render '/common/activities', activities:
     [
-      { type: 'primary', time: '1 hour ago', message:  'Heading 2 report due' },
-      { type: 'success', time: '2 hours ago', message: 'Heading 12 report submitted' },
-      { type: 'warning', time: '3 hours ago', message: 'Heading 14 behind budget' },
-      { type: 'info',    time: '4 hours ago', message: 'Heading 11 has been inactive for 4 days' },
-      { type: 'primary', time: '4 hours ago', message: 'Heading 3 report submitted' },
+      { type: 'success', time: '1 hour ago',  message: 'Broadmeadow Heading 2 Available Again' },
+      { type: 'primary', time: '2 hours ago', message: 'Broadmeadow Heading 12 Daily Report Submitted' },
+      { type: 'warning', time: '3 hours ago', message: 'Blackwater Heading 7 changed status to Unavailable - No Vent / High Radiation' },
+      { type: 'info',    time: '4 hours ago', message: 'Mount Arthur Heading 11 is available but unused for 12 days' },
+      { type: 'warning', time: '4 hours ago', message: 'Broadmeadow Heading 2 changed status to Unavailable - Unplanned MOP Interaction' },
     ] %>
   <!-- #end recent activities -->
 

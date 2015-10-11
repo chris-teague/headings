@@ -5,7 +5,7 @@
         <div class="clearfix">
           <div class="info left">
             <h4 class="mt0 text-primary text-bold">
-              <%= latest_summaries.present? ? "#{latest_summaries.last.actual_advance_metres}m" : 'None' %>
+              <%= latest_summaries.present? ? "#{latest_summaries.first.actual_advance_metres}m" : 'None' %>
             </h4>
             <h5 class="text-light mb0">Development Yesterday</h5>
           </div>
@@ -24,7 +24,9 @@
       <div class="panel-body">
         <div class="clearfix">
           <div class="info left">
-            <h4 class="mt0 text-success text-bold">132m</h4>
+            <h4 class="mt0 text-success text-bold">
+              <%= latest_summaries.present? ? "#{latest_summaries.first.actual_rehab_metres}m" : 'None' %>
+            </h4>
             <h5 class="text-light mb0">Rehab Yesterday</h5>
           </div>
           <div class="right ion ion-ios-pulse icon"></div>
@@ -32,7 +34,9 @@
       </div>
       <div class="panel-footer clearfix panel-footer-sm panel-footer-success">
         <p class="mt0 mb0 left">% change</p>
-        <span class="right sparkline" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">3,5,9,8,6,10</span>
+        <span class="right sparkline" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">
+          <%= latest_summaries.present? ? latest_summaries.map(&:actual_rehab_metres).join(',') : '1,2,3,2,4,6' %>
+        </span>
       </div>
     </div>
   </div>
@@ -42,8 +46,10 @@
       <div class="panel-body">
         <div class="clearfix">
           <div class="info left">
-            <h4 class="mt0 text-info text-bold">110</h4>
-            <h5 class="text-light mb0">Active Headings</h5>
+            <h4 class="mt0 text-info text-bold">
+              <%= latest_summaries.present? ? "#{latest_summaries.first.actual_available_headings}" : 'None' %>
+            </h4>
+            <h5 class="text-light mb0">Active Headings Yesterday</h5>
           </div>
           <div class="right ion ion-ios-pulse icon"></div>
         </div>
@@ -60,13 +66,19 @@
       <div class="panel-body">
         <div class="clearfix">
           <div class="info left">
-            <h4 class="mt0 text-pink text-bold">80%</h4>
-            <h5 class="text-light mb0">Heading Reports Submitted</h5>
+            <h4 class="mt0 text-<%= @project.behind_target? ? 'pink' : 'success' %> text-bold">
+              <% if @project.behind_target? %>
+                <%= 100 - @project.budget_status %>% Behind Budget Target
+              <% else %>
+                <%= @project.budget_status - 100 %>% Ahead of Budget Target
+              <% end %>
+            </h4>
+            <h5 class="text-light mb0">Monthly MOP Target</h5>
           </div>
           <div class="right ion ion-ios-list-outline icon"></div>
         </div>
       </div>
-      <div class="panel-footer clearfix panel-footer-sm panel-footer-pink">
+      <div class="panel-footer clearfix panel-footer-sm panel-footer-<%= @project.behind_target? ? 'pink' : 'success' %>">
         <p class="mt0 mb0 left">% change</p>
         <span class="sparkline right" data-Type="bar" data-BarColor="#fff" data-Width="1.15em" data-Height="1.15em">6,4,9,10,6,2</span>
       </div>

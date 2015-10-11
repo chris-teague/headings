@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010105540) do
+ActiveRecord::Schema.define(version: 20151011002920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,22 +43,36 @@ ActiveRecord::Schema.define(version: 20151010105540) do
     t.integer  "project_id"
     t.string   "name"
     t.string   "status"
-    t.decimal  "lat",        precision: 15, scale: 10
-    t.decimal  "lng",        precision: 15, scale: 10
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.integer  "completion",                           default: 0
+    t.decimal  "lat",         precision: 15, scale: 10
+    t.decimal  "lng",         precision: 15, scale: 10
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "completion",                            default: 0
+    t.string   "parent_name"
+  end
+
+  create_table "machines", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "last_serviced_at"
+    t.datetime "next_scheduled_service"
+    t.string   "status"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "url"
-    t.decimal  "lat",         precision: 15, scale: 10
-    t.decimal  "lng",         precision: 15, scale: 10
+    t.decimal  "lat",           precision: 15, scale: 10
+    t.decimal  "lng",           precision: 15, scale: 10
     t.text     "description"
     t.string   "owner"
+    t.integer  "budget_status",                           default: 100
   end
 
   create_table "staffs", force: :cascade do |t|

@@ -1,9 +1,9 @@
 module Imports
-  class Headings
+  class Machines
 
     def self.run(files=nil)
 
-      files ||= Dir[Rails.root.join('lib', 'imports', 'headings.csv')]
+      files ||= Dir[Rails.root.join('lib', 'imports', 'machines.csv')]
 
       count = 0
       fails = 0
@@ -25,7 +25,7 @@ module Imports
       s = SmarterCSV.process(@file, { col_sep: ",", quote_char: "\"", row_sep: :auto })
       s.each do |r|
         r.merge!({project_id: @project.id})
-        Heading.create!(r)
+        Machine.create!(r)
       end
     end
 

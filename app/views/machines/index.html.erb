@@ -1,0 +1,77 @@
+<%= render '/projects/side_menu', project: @project %>
+<%= content_for(:page_title, "#{@project.name} Machinery") %>
+
+<div class="col-sm-12 col-md-12">
+  <div class="panel panel-lined table-responsive panel-hovered mb20 data-table">
+
+    <div class="panel-heading">Out of Action</div>
+
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+
+      <table class="table table-bordered table-striped dataTable no-footer">
+        <thead>
+          <tr>
+            <th style='width:25%'>Name</th>
+            <th style='width:25%'>Status</th>
+            <th style='width:25%'>Last Active Service</th>
+            <th style='width:25%'>Return to Service ETA</th>
+            <!-- <th>Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+        <% @machines.where(status: 'Out of Action').each do |machine| %>
+          <tr>
+            <td><%= machine.name %></td>
+            <td><%= machine.status %></td>
+            <td><%= machine.last_serviced_at.strftime('%d-%b-%Y') %></td>
+            <td><%= machine.next_scheduled_service.strftime('%d-%b-%Y') %></td>
+            <!-- <td>
+              <%= link_to('Edit', edit_project_machine_path(@project, machine)) %>
+            </td> -->
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="col-sm-12 col-md-12">
+  <div class="panel panel-lined table-responsive panel-hovered mb20 data-table">
+
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+
+      <table class="table table-bordered table-striped dataTable no-footer">
+        <thead>
+          <tr>
+            <th style='width:25%'>Name</th>
+            <th style='width:25%'>Status</th>
+            <th style='width:25%'>Last Serviced</th>
+            <th style='width:25%'>Next Scheduled Service</th>
+            <!-- <th>Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+        <% @machines.each do |machine| %>
+          <tr>
+            <td><%= machine.name %></td>
+            <td><%= machine.status %></td>
+            <td><%= machine.last_serviced_at.strftime('%d-%b-%Y') %></td>
+            <td><%= machine.next_scheduled_service.strftime('%d-%b-%Y') %></td>
+            <!-- <td>
+              <%= link_to('Edit', edit_project_machine_path(@project, machine)) %>
+            </td> -->
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
+

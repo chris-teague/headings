@@ -6,7 +6,7 @@ class StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
-    @staffs = Staff.all
+    @staffs = @project.staff
   end
 
   # GET /staffs/1

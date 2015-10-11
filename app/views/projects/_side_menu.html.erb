@@ -1,9 +1,9 @@
 <% content_for(:side_menu) do %>
   <li>
-    <a>
+    <%= link_to(project_path(project)) do %>
       <i class="ion ion-pinpoint"></i>
       <span class="text"><%= project.name %></span>
-    </a>
+    <% end %>
   </li>
 
   <li>
@@ -14,7 +14,7 @@
   </li>
 
   <li>
-    <%= link_to(project_budget_edit_path(project)) do %>
+    <%= link_to(project_budget_view_path(project)) do %>
       <i class="ion ion-social-usd"></i>
       <span class="text">Budget</span>
     <% end %>
@@ -42,18 +42,18 @@
   </li>
 
   <li>
-    <a href="/staff">
+    <%= link_to(project_machines_path(project)) do %>
       <i class="ion ion-settings"></i>
       <span class="text">Machinery</span>
-    </a>
+    <% end %>
   </li>
 
-  <li>
+<!--   <li>
     <a href="/staff">
       <i class="ion ion-arrow-graph-up-right"></i>
       <span class="text">MOP Projections</span>
     </a>
-  </li>
+  </li> -->
 
 <% end %>
 

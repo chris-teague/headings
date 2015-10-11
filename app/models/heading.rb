@@ -4,8 +4,8 @@ class Heading < ActiveRecord::Base
 
   DefaultStatusTypes = [
     'Available',
-    'No Vent/ High Radiation ',
-    'Mining Towards Heading Hazard zone ',
+    'No Vent/ High Radiation',
+    'Mining Towards Heading Hazard zone',
     'Interaction With Other Department',
     'Rehab/Geotech Inspection',
     'No Services Installed',

@@ -49,6 +49,60 @@ jQuery(function() {
 		});
 	}
 
+	// c3 chart
+	function initC3Chart() {
+		var analyticsconfig = {
+			bindto: "#c3chartAnalytics",
+			data: {
+				columns: [
+					['Network Load', 30, 100, 80, 140, 150, 200],
+					['CPU Load', 90, 100, 170, 140, 190, 50]
+				],
+				type: 'spline',
+				types: {
+					'Network Load': 'bar'
+				}
+			},
+			color: {
+				pattern: ["#3F51B5",  "#38B4EE", "#4CAF50", "#E91E63"]
+			},
+			legend: {
+				position: "inset"
+			},
+			size: {
+				height: 330
+			}
+		};
+
+		var browserconfig = {
+			bindto: "#c3chartbrowsershare",
+			data: {
+				columns: [
+				["Chrome", 48.9],
+				["Firefox", 16.1],
+				["Safari", 10.9],
+				["IE", 17.1],
+				["Other",7]
+				],
+				type: "donut",
+			},
+			size: {
+				width: 260,
+				height: 260
+			},
+			donut: {
+				width: 50
+			},
+			color: {
+				pattern: ["#3F51B5", "#4CAF50", "#f44336", "#E91E63", "#38B4EE"]
+			}
+		}
+
+		c3.generate(analyticsconfig);
+		c3.generate(browserconfig);
+
+	}
+
 	// rating symbol via external plugin (in angularjs version, it is included in angular-bootstrap)
 	// function initRating() {
 	// 	$("input.rating-control").rating();
@@ -309,6 +363,7 @@ jQuery(function() {
 	function _init() {
 		initSparklines();
 		initEasyPieChart();
+		initC3Chart();
 	}
 	_init();
 

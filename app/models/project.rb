@@ -9,6 +9,8 @@ class Project < ActiveRecord::Base
   has_many :budget_items
   has_many :daily_summaries
   has_many :headings
+  has_many :staff
+  has_many :machines
 
   def to_param
     url
@@ -24,6 +26,10 @@ class Project < ActiveRecord::Base
 
   def latest_summaries
     daily_summaries.order('date DESC').limit(8)
+  end
+
+  def behind_target?
+    budget_status < 100
   end
 
   private

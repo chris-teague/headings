@@ -14,7 +14,7 @@
     $(document).ready(function() {
       google.maps.event.addDomListener(window, 'load', function() {
         var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 13,
+          zoom: 14,
           center: new google.maps.LatLng(<%= @project.lat %>, <%= @project.lng %>),
           mapTypeId: google.maps.MapTypeId.SATELLITE,
           disableDefaultUI: true,
@@ -25,13 +25,13 @@
           this.setOptions({scrollwheel:true});
         });
 
-        var pinColorGreen = "00FF00";
+        var pinColorGreen = "4caf50";
         var pinGreen = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColorGreen,
             new google.maps.Size(21, 34),
             new google.maps.Point(0,0),
             new google.maps.Point(10, 34));
 
-        var pinColorRed = "FF0000";
+        var pinColorRed = "e91e63";
         var pinRed = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColorRed,
             new google.maps.Size(21, 34),
             new google.maps.Point(0,0),
@@ -57,6 +57,23 @@
             icon:   pin<%= heading.pin_colour %>,
             shadow: pinShadow
           });
+
+
+          <% if heading.parent_name.present? %>
+            <% parent_heading = Heading.where(name: heading.parent_name).first %>
+            var headingPathCoordinates_<%= heading.id %> = [
+              {lat: <%= heading.lat %>, lng: <%= heading.lng %>},
+              {lat: <%= parent_heading.lat %>, lng: <%= parent_heading.lng %>}
+            ];
+            var headingPath_x = new google.maps.Polyline({
+              path: headingPathCoordinates_<%= heading.id %>,
+              geodesic: true,
+              strokeColor: '#ffeb3b',
+              strokeOpacity: 1.0,
+              strokeWeight: 2,
+              map: map
+            });
+          <% end %>
         <% end %>
 
       });

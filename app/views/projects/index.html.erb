@@ -1,5 +1,5 @@
 <%= render 'achievement_stats' %>
-<%= content_for :page_title, 'Mining Projects' %>
+<%= content_for :page_title, 'BHP Mining Projects' %>
 
 <div class="row">
   <% @projects.each do |project| %>
@@ -45,16 +45,35 @@
 <div class="row">
 
   <!-- Analytics -->
+  <!-- Project stats -->
   <div class="col-md-7">
-    <div class="panel panel-default mb20 panel-hovered analytics">
-      <div class="panel-heading">Analytics</div>
+    <div class="panel panel-default mb20 panel-hovered project-stats table-responsive">
+      <div class="panel-heading">Active Headings Nearing Completion</div>
       <div class="panel-body">
-        <div id="c3chartAnalytics"></div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-sm-5">Project</th>
+              <th class="col-sm-5">Heading</th>
+              <th class="col-sm-1">Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% Heading.where('completion > 80 AND status = ?', 'Available').order('completion DESC').each do |heading| %>
+              <tr>
+                <td><%= heading.project.name %></td>
+                <td><%= heading.name %></td>
+                <td class="text-center">
+                  <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em"><%= heading.completion %>,<%= 100 - heading.completion %></span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
-
-  </div> <!-- #end analytics -->
-
+  </div>
 
   <%= render '/common/activities', activities:
     [
@@ -69,63 +88,3 @@
 </div> <!-- #end row -->
 
 
-<!-- row -->
-<div class="row">
-
-
-  <!-- Project stats -->
-  <div class="col-md-7">
-    <div class="panel panel-default mb20 panel-hovered project-stats table-responsive">
-      <div class="panel-heading">Active Headings Nearing Completion</div>
-      <div class="panel-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th class="col-sm-5">Project</th>
-              <th class="col-sm-1">Progress</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>101</td>
-              <td>Designing Wordpress Theme</td>
-              <td class="text-center">
-                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">2,8</span>
-              </td>
-              <td>20<sup>th</sup> Jan 2015</td>
-            </tr>
-
-            <tr>
-              <td>220</td>
-              <td>Convert to SASS</td>
-              <td class="text-center">
-                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
-              </td>
-              <td>28<sup>th</sup> Jan 2015</td>
-            </tr>
-
-            <tr>
-              <td>310</td>
-              <td>Adding animations to template</td>
-              <td class="text-center">
-                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">7,3</span>
-              </td>
-              <td>02<sup>nd</sup> Feb 2015</td>
-            </tr>
-
-            <tr>
-              <td>405</td>
-              <td>Lorem ipsum dolar sit amet</td>
-              <td class="text-center">
-                <span class="sparkline" data-Type="pie" data-SliceColors="[#4CAF50,#eee]" data-Width="2em" data-Height="2em">4,6</span>
-              </td>
-              <td>28<sup>th</sup> Mar 2015</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>

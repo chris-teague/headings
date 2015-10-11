@@ -55,6 +55,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    colorbox-rails (0.1.2)
+      jquery-rails
+      rails (>= 3.1.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -185,6 +188,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  colorbox-rails
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

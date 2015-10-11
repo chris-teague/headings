@@ -32,6 +32,10 @@ class Project < ActiveRecord::Base
     budget_status < 100
   end
 
+  def available_machines
+    machines.where('status != ?', 'Out of Action')
+  end
+
   private
 
     def create_missing_budget_items

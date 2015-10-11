@@ -22,4 +22,5 @@
 //= require plugins/jquery.easypiechart.min
 //= require app
 //= require select2
+//= require colorbox-rails
 //= require index.init

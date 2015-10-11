@@ -9,7 +9,7 @@ module Imports
       fails = 0
       files.each do |file|
         count += 1
-        self.new(file)
+        self.new(file, 11)
       end
 
       puts "Count: #{count}"

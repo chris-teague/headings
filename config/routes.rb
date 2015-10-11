@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get  'budget/view'
     post 'budget'
     get  'progress/view'
+    get  'daily_submission'
     resources :headings
     resources :staffs
     resources :machines

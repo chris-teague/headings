@@ -1,0 +1,53 @@
+<%= content_for(:page_title, 'Daily Heading Progress Submission') %>
+
+<% 1.upto(6).each do |i| %>
+<div class="col-md-4 col-sm-6">
+  <div class="panel panel-default panel-hovered panel-stacked mb30">
+    <div class="panel-heading">Heading <%= i %></div>
+    <div class="panel-body">
+      <form role="form" class="form-horizontal" action="javascript:;"> <!-- form horizontal acts as a row -->
+        <!-- with hint -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Advance</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" placeholder="eg 2.1">
+          </div>
+        </div>
+
+        <!-- with hint -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Rehab</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" placeholder="eg 2.1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label small">Current Heading Status</label>
+          <select id="status_<%= i %>" style="width: 100%" data-placeholder="Select a status">
+            <% Heading::DefaultStatusTypes.each do |val| %>
+              <option value='<%= val %>'><%= val %></option>
+            <% end %>
+          </select>
+        </div>
+
+        <script>
+          $(document).ready(function(){
+            $("#status_<%= i %>").select2();
+          });
+        </script>
+
+      </form>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="col-sm-12 col-md-12">
+  <div class="panel panel-lined table-responsive panel-hovered mb20 data-table">
+    <div class="panel-body">    <div class="clearfix right">
+      <button class="btn btn-primary mr5 waves-effect" type="submit">Submit</button>
+      <button class="btn btn-default waves-effect">Cancel</button>
+    </div>
+  </div>
+</div>
